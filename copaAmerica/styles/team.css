@@ -6,10 +6,13 @@
 @layer reset;
 
 :root{
-    --primaty-font: 'Neucha', arial, helvetica, sans-serif;
+    --primary-font: 'Neucha', arial, helvetica, sans-serif;
     --secondary-font: 'Tsukimi Rounded', arial, helvetica, sans-serif;
     --font-w-semibold: 600;
-    --card-light-color: #f5f5f5;
+    --bg-light: #f5f5f5;
+    --text-color-light: #f5f5f5;
+    --bg-dark: #252020;
+    --text-color-dark: #252020;
     --team-main-color: #511a33;
     --team-secondary-color: #be9c51;
     --wininnig-color: #22b422;
@@ -20,15 +23,15 @@
 
 body{
     min-height: 100vh;
-    width: 100vw;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(0 0 0 / 90%);
+    background-color: var(--bg-dark);
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: var(--primaty-font);
+    font-family: var(--primary-font);
     font-weight: var(--font-w-semibold);
 
 }
@@ -39,6 +42,10 @@ p{
     font-size: 1rem;
 }
 
+.d-none{
+    display: none;
+}
+
 .material-symbols-outlined {
     font-variation-settings:
     'FILL' 0,
@@ -47,23 +54,14 @@ p{
     'opsz' 24
 }
 
-
 .team-card{
-    background-color: var(--card-light-color);
+    background-color: var(--bg-light);
     border-radius: 10px;
 }
 
 .container{
-    position: absolute;
-    width: 70%;
     height: 90%;
-    background-color: lightslategrey;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
-    grid-template-rows: 1fr 0.5fr 0.5fr 1fr 1fr;
-    grid-auto-flow: row;
-    gap: 10px;
-    padding: 3%;
 }
 
 .team-streak{
@@ -91,7 +89,7 @@ p{
             justify-content: center;
             align-items: center;
             font-size: 3rem;
-            font-family: var(--primaty-font);
+            font-family: var(--primary-font);
             font-weight: 400;
             background-color: #e1e0e7;
             border-radius: 10px;
@@ -114,7 +112,7 @@ p{
 
     &::before{
         content: 'Histórico';
-        font-family: var(--primaty-font);
+        font-family: var(--primary-font);
         font-weight: var(--font-w-semibold);
         font-size: 1.5rem;
         width: 100%;
@@ -164,11 +162,11 @@ p{
     
         & span{
             text-align: center;
-            color: var(--card-light-color);
+            color: var(--bg-light);
         }
     
         &>span p:first-child{
-            font-family: var(--primaty-font);
+            font-family: var(--primary-font);
             font-weight: 500;
             font-size: 3rem;
         }
@@ -212,11 +210,11 @@ p{
         
             & p{
                 background-color: var(--team-main-color);
-                color: var(--card-light-color);
+                color: var(--bg-light);
                 border-radius: 50px;
                 width:50%;
                 height: 90%;
-                font-family: var(--primaty-font);
+                font-family: var(--primary-font);
                 font-size: 3rem;
                 font-weight: 400;
                 display: flex;
@@ -240,13 +238,16 @@ p{
     align-items: center; 
 
     & section:first-child{
+        & p{
+            display: none;
+        }
+
         & img{
             max-width: 50%;
             height: auto;
             object-fit:cover;
             transform: translateY(45%) scale(3);
             user-select: none;
-            filter: drop-shadow(1px 1px 5px var(--team-secondary-color));
         }
     }
 
@@ -276,7 +277,7 @@ p{
             position: relative;
             top: 25%;
             font-size: 2rem;
-            font-family: var(--primaty-font);
+            font-family: var(--primary-font);
             font-weight: 400;
         }
 
@@ -318,6 +319,30 @@ p{
     grid-column: span 2;
     display: flex;
 
+    & div:first-child a{
+        opacity: 0;
+        background-color: var(--team-main-color);
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+        height: 20%;
+        position: relative;
+        color: white;
+        text-decoration: none;
+        font-family: var(--primary-font);
+        font-size: 1.5rem;
+        transition: opacity 0.5s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    }
+
+    & div:first-child a:hover{
+        background-color: white;
+        color: var(--team-main-color);
+        outline: 1px solid var(--team-main-color);
+    }
+
     &>div:first-child{
         background-image: url("../assets/img/teams/venezuela-team.webp");
         width: 65%;
@@ -332,46 +357,10 @@ p{
         align-items: center;
         position: relative;
 
-        & a{
-            opacity: 0;
-            background-color: var(--team-main-color);
-            border: none;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 30%;
-            height: 20%;
-            position: relative;
-            color: white;
-            text-decoration: none;
-            font-family: var(--primaty-font);
-            font-size: 1.5rem;
-            transition: opacity 0.5s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
-        }
-
-        & a:hover{
-            background-color: white;
-            color: var(--team-main-color);
-        }
-    }
-
-    &>div:first-child::before{
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        background:rgb(0 0 0 / 50%);
-        opacity: 0;
-        transition: opacity 0.3s ease-in;
-    }
-    
-    &>div:first-child:hover::before, &>div:first-child:hover a{
-        opacity: 1;
     }
 
     &>div:last-child{
-        background-color: var(--card-light-color);
+        background-color: var(--bg-light);
         width: 35%;
         border-radius: inherit;
         border-start-start-radius: 0;
@@ -397,15 +386,15 @@ p{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        gap: 3%;
+        gap: 4%;
         width: 100%;
         height: 100%;
         list-style: none;
         overflow-x: auto;
 
         &::-webkit-scrollbar {
-            width: auto;
             height: 0.5rem;
+            width: auto;
         }
 
         &::-webkit-scrollbar-thumb {
@@ -433,7 +422,7 @@ p{
             align-items: center;
             height: 100%;
             width: auto;
-            color: var(--card-light-color);
+            color: var(--bg-light);
 
             & span:first-child {
                 display: flex;
@@ -469,7 +458,7 @@ p{
 @supports not selector(::-webkit-scrollbar){
     .team-matches ul{
         scrollbar-width: auto;
-        scrollbar-color: var(--team-secondary-color) var(--card-light-color);
+        scrollbar-color: var(--team-secondary-color) var(--bg-light);
     }
 }
 
@@ -479,4 +468,290 @@ p{
     object-fit: cover;
     border-radius: 100px;
     outline: 1px solid #fff;
+}
+
+@media (width >= 935px) and (width <= 2000px){
+    .container{
+        grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+        grid-template-rows: 1fr 0.5fr 0.5fr 1fr 1fr;
+        grid-auto-flow: row;
+        max-width: 900px;
+        max-height: unset;
+        height: 500px;
+        padding: 5%;
+        gap: 10px;       
+    }
+
+    .team-players{
+        &>div:first-child::before{
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background:rgb(0 0 0 / 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        &>div:first-child:hover::before, &>div:first-child:hover a{
+            opacity: 1;
+        }
+    }
+
+    .team-formation{
+        max-width: 135px;
+    }
+}
+
+
+@media (width <= 934px) {
+    .container {
+        grid-template-columns: 1fr 1fr 0.9fr;
+        grid-auto-rows: max-content;
+        grid-auto-flow: row;
+        max-width: 400px;
+        gap:10px;
+        padding: 0 2.5%;
+    }
+    
+    .team-presentation .card-header,
+    .team-presentation .card-content,
+    .team-idol,
+    .team-formation,
+    .team-players,
+    .team-matches {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .team-card {
+        grid-column: 1 / -1;
+    }
+
+    .team-presentation{
+        grid-column: 1 / 3;
+
+        & .card-header{
+            & img{
+                min-width: 3rem;
+            }
+        }
+
+        & .card-content{
+            & span:nth-child(1){
+                & p{
+                    font-size: 1.8rem;
+                }
+            }
+
+            & span:nth-child(2){
+                & p{
+                    height: 100%;
+                    width: 45%;
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+
+    .team-streak{
+        grid-column: 3 / 4;
+        grid-row: 1 / 4;
+
+        & div{
+            flex-direction:column;
+            align-items: start;
+            box-sizing: border-box;
+
+            & p{
+                background: none;
+                width: 100%;
+                justify-content: space-evenly;
+            }
+
+            & p:nth-child(1)::after, & p:nth-child(2)::after, & p:nth-child(3)::after{
+                font-family: var(--secondary-font);
+                font-size: 1.5rem;
+                font-weight: var(--font-w-semibold);
+                border-radius: 5px;
+                height: 70%;
+                width: 30%;
+                align-content: center;
+                text-align: center;
+            }
+
+            & p:nth-child(1)::after{
+                background-color: var(--wininnig-color);
+                content: 'V';
+            }
+
+            & p:nth-child(2)::after{
+                background-color: var(--tie-color);
+                content: 'E';
+            }
+
+            & p:nth-child(3)::after{
+                background-color: var(--losing-color);
+                content: 'D';
+            }
+
+            & p:nth-child(1):hover, & p:nth-child(2):hover, & p:nth-child(3):hover{
+                background: none;
+            } 
+        }
+
+        &::after{
+            content: '';
+        }
+    }
+
+    .team-idol{
+        height: 45vh;
+        max-height: 250px;
+        flex-direction: column;
+
+        & section:nth-child(1){
+            width: 100%;
+            height: 65%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            clip-path: ellipse(60% 70% at 50% 30%);
+            background-color: var(--team-main-color);
+
+            & img{
+                max-width: 100%;
+                max-height: 50%;
+                scale: 1;
+                translate: 0 50%;
+            }
+
+            & p{
+                position: relative;
+                top:30px;
+                display: flex;
+                font-size: 2.5rem;
+                border-radius: 10px;
+                width: 55%;
+                height: 40%;
+                align-items: center;
+                justify-content: center;
+                color: var(--bg-light);
+            }
+
+        }
+
+        & section:nth-child(2){
+            width: 100%;
+            height: 40%;
+            box-sizing: border-box;
+            padding-top: 2%;
+
+            & p{
+                font-size: 1rem;
+            }
+
+            .shape{
+                display: none;
+            }
+        }
+    }
+
+    .team-players{
+        height: 80vh;
+        max-height: 450px;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        & div:first-child{
+            width: 100%;
+            height: 50%;
+            border-radius: 0;
+            background-size: cover;
+        }
+
+        & div:first-child a{
+            display: none;
+        }
+
+        & div:last-child{
+            width: 100%;
+            height: 50%;
+            border-radius: 0;
+            flex-direction: row;
+            padding: 0 2%;
+            box-sizing: border-box;
+
+            & span{
+                display: flex;
+                flex-direction: column;
+                width: auto;
+                height: 100%;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            & .team-formation{
+                width: 30%;
+                min-width: 120px;
+            }
+
+            & h1{
+                font-size: 3rem;
+            }
+
+            &>h2{
+                display: none;
+            }
+
+            & span>h2{
+                display: flex;
+                font-size: 1.3rem;
+            }
+
+            & span a{
+                width: 85%;
+                background-color: var(--team-main-color);
+                border: none;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 15%;
+                position: relative;
+                color: white;
+                text-decoration: none;
+                font-family: var(--primary-font);
+                font-size: 1.5rem;
+                transition: opacity 0.5s ease-in-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+            }
+
+            & span a:hover{
+                background-color: white;
+                color: var(--team-main-color);
+                outline: 1px solid var(--team-main-color);
+            }
+        }
+    }
+
+    .team-matches{
+        min-height: 100px;
+
+        & ul{
+            flex-flow: row wrap;
+            padding-top: 3%;
+            box-sizing: border-box;
+
+            &::-webkit-scrollbar:vertical {
+                width: 0.5rem;
+                height: auto;
+            }
+        }
+
+        & li{
+            width: 70%;
+            height: 30%;
+        }
+    }
 }
