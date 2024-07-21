@@ -204,38 +204,5 @@
             </ul>
         </div>
     </div>
-    <script>
-    const teamStreak = document.querySelector('.team-streak');
-    const winP = teamStreak.querySelector('div p:nth-child(1)');
-    const tieP = teamStreak.querySelector('div p:nth-child(2)');
-    const loseP = teamStreak.querySelector('div p:nth-child(3)');
-
-    winP.addEventListener('mouseenter', () => {
-        teamStreak.style.setProperty('--streak-foot-text', "'Ganados'");
-        teamStreak.classList.add('hovered');
-    });
-
-    tieP.addEventListener('mouseenter', () => {
-        teamStreak.style.setProperty('--streak-foot-text', "'Empatados'");
-        teamStreak.classList.add('hovered');
-    });
-
-    loseP.addEventListener('mouseenter', () => {
-        teamStreak.style.setProperty('--streak-foot-text', "'Perdidos'");
-        teamStreak.classList.add('hovered');
-    });
-
-    winP.addEventListener('mouseleave', () => {
-        teamStreak.classList.remove('hovered');
-    });
-
-    tieP.addEventListener('mouseleave', () => {
-        teamStreak.classList.remove('hovered');
-    });
-
-    loseP.addEventListener('mouseleave', () => {
-        teamStreak.classList.remove('hovered');
-    });
-    </script>
 </body>
 </html>
