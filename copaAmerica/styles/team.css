@@ -645,6 +645,7 @@ p{
         height: 45vh;
         max-height: 250px;
         flex-direction: column;
+        min-height: 250px;
 
         & section:nth-child(1){
             width: 100%;
@@ -699,6 +700,7 @@ p{
         min-width: 100%;
         display: flex;
         flex-direction: column;
+        min-height: 420px;
 
         & div:first-child{
             width: 100%;
@@ -794,14 +796,14 @@ p{
     }
 }
 
-/* @media (prefers-color-scheme: dark){
+ @media (prefers-color-scheme: dark){
     :root{
         --bg-color: var(--black-color);
         --card-color: var(--dark-color);
-        --outline-color: #1f1e1e;
+        --outline-color: rgb(25 25 25 / 100%);
         --text-secondary-color: var(--white-color);
         --text-primary-color: var(--white-color);
         --team-streak-semibg-color: rgb(24 23 23);
         --scrollbar-track-color: rgb(63 63 63 / 93.2%);
     }
-} */
+} 
