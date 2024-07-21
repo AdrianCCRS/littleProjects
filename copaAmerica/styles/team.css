@@ -494,7 +494,7 @@ p{
 @supports not selector(::-webkit-scrollbar){
     .team-matches ul{
         scrollbar-width: auto;
-        scrollbar-color: var(--team-secondary-color) var(--bg-color);
+        scrollbar-color: var(--team-main-color) var(--scrollbar-track-color);
     }
 }
 
