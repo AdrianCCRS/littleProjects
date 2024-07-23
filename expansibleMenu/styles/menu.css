@@ -1,0 +1,110 @@
+@import url('../../pokerCards/styles/reset.css') layer(reset);
+
+@layer reset;
+
+:root{
+    --dark-color: #1c1c1c;
+    --light-color: rgb(250 250 250 / 69.2%);
+}
+
+body{
+    height: 100vh;
+    min-width: 100vw;
+    background-color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 70%;
+    height: 80%;
+    background-image: url("https://wallpapers.com/images/hd/mcqueen-1280-x-720-background-cwicd1e37nyo84uc.jpg");
+    display: flex;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-container{
+    gap: 2rem;
+    height: auto;
+    width: max-content;
+    padding-inline: 2%;
+    padding-block: 1%;
+    border-radius: 15px;
+    background-color: rgb(24 24 27 / 20%);
+    backdrop-filter: blur(10px);
+    outline: var(--dark-color) solid 1px;
+    border: rgb(255 255 255 / 10%) solid 1px;
+    box-sizing: border-box;
+}
+
+.menu-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap:15px;
+    align-items: center;
+}
+
+.menu-item{
+    width: 40px;
+    height: auto;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-color);
+    background-color: var(--dark-color);
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    border: rgb(255 255 255 / 10%) solid 1px;
+    outline: var(--dark-color) solid 1px;
+    transition: margin 0.3s ease, transform 0.3s ease;
+
+
+    & span{
+        opacity: 0;
+        position: absolute;
+        font-size: 1rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 300;
+        background-color: var(--dark-color);
+        border-radius: 10px;
+        border: rgb(255 255 255 / 10%) solid 1px;
+        outline: var(--dark-color) solid 1px;
+        box-sizing: border-box;
+        padding: 5px 6px;
+        transform: translateY(-220%);
+
+    }
+
+    & svg{
+        width: 100%;
+    }
+}
+
+.menu-item:hover{
+    cursor: pointer;
+    margin: 0 20px;
+    transform: scale(2.2) translateY(-30%);
+
+    & span{
+        opacity: 1;
+        transform: scale(.5) translateY(-220%);
+        transition: opacity 0.3s ease , scale 0.3s ease;
+    }
+}
+
+.previous, .next{
+    margin-inline: 12px;
+    transform: scale(1.4) translateY(-25%);
+}
+
+.previous2, .next2{
+    margin-inline: 7px;
+    transform: scale(1.1) translateY(-10%);
+}
