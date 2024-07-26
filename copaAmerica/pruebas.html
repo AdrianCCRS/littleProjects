@@ -7,7 +7,12 @@
     <title>Componentes</title>
 </head>
 <body>
-    
+    <div class="mode-container">
+        <div class="mode-btn">
+            <input type="checkbox" id="mode-input">
+            <div class="mode-circle"></div>
+        </div>
+    </div>
     <div class="container">
         <div class="team-card team-presentation">
             <div class="card-header">
@@ -25,27 +30,7 @@
                 <span> <p>19</p> </span>
                 <span> <p>Debut</p> </span>
                 <span> <p>Participaciones</p> </span>
-                <!--
-                    <div>
-                        <h2>54°</h2>
-                        <span>
-                            <p>Ranking</p>
-                            <p>FIFA</p>
-                        </span>
-                    </div>
-                    -->
             </div>
-<!--
-            <div class="card-footer">
-                <div>
-                    <span>
-                        <p>8V</p>
-                        <p>17E</p>
-                        <p>45D</p>
-                    </span>
-                </div>
-            </div>
--->
         </div>
         <div class="team-card team-idol">
             <section>
@@ -98,9 +83,15 @@
         </div>
         <div class="team-card team-streak">
             <div>
-                <p>8</p>
-                <p>17</p>
-                <p>45</p>
+                <div class="team-streak-number">
+                    <p>8</p>
+                </div>
+                <div class="team-streak-number">
+                    <p>17</p>
+                </div>
+                <div class="team-streak-number">
+                    <p>45</p>
+                </div>
             </div>
         </div>
         <div class="team-card team-matches">
@@ -110,9 +101,9 @@
                         <span>
                           <p class="home-team">VEN</p>
                           <p class="home-score">1</p>
-                          <img class="home-flag" src="./assets/img/flags/ven-flag.png" alt="Venezuela flag">
+                          <a href="" class="country-coin"><img class="home-flag" src="./assets/img/flags/ven-flag.png" alt="Venezuela flag"></a>
                           <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-                          <img class="away-flag" src="./assets/img/flags/can-flag.png" alt="Canada flag">
+                          <a href="" class="country-coin"><img class="away-flag" src="./assets/img/flags/can-flag.png" alt="Canada flag"></a>
                           <p class="away-score">1</p>
                           <p class="away-team">CAN</p>
                         </span>
@@ -204,5 +195,74 @@
             </ul>
         </div>
     </div>
+    <script>
+        function toggleMode(state) {
+            document.documentElement.classList.toggle('dark-mode', state);
+            if (state==true){
+                document.getElementById('mode-input').checked = true;
+        }}
+        const useDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const modeInput = document.getElementById('mode-input');
+        useDark.addListener((evt) => toggleDarkMode(evt.matches));
+        toggleMode(useDark.matches);
+        modeInput.addEventListener('change', () => {
+            toggleMode(modeInput.checked);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.setProperty('--opacity', 1);
+                });
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--x', x + 'px');
+                    card.style.setProperty('--y', y + 'px');
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--opacity', 0);
+            });
+        });
+            
+            const teamFormation = document.querySelector('.team-formation');
+            teamFormation.addEventListener('mousemove', (e) => {
+            const rect = teamFormation.getBoundingClientRect();
+            const xf = e.clientX - rect.left;
+            const yf = e.clientY - rect.top;
+
+            const thirdW = rect.width / 3;
+            const thirdH = rect.height / 3;
+
+            let rotateX = 0;
+            let rotateY = 0;
+
+            if (yf < thirdH) {
+                rotateX = 0.2;
+            } else if (yf > 2 * thirdH) {
+                rotateX = -0.2;
+            }
+
+            if (xf < thirdW) {
+                rotateY = -0.2;
+            } else if (xf > 2 * thirdW) {
+                rotateY = 0.2;
+            }
+
+            teamFormation.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+            teamFormation.addEventListener('mouseleave', () => {
+                teamFormation.style.setProperty('transform', 'rotateX(0deg) rotateY(0deg)');
+            });
+    });
+    </script>
 </body>
 </html>
